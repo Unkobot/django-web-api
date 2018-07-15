@@ -1,0 +1,37 @@
+{% extends 'core/base.html' %}
+{% block title %}Nuestra API{% endblock %}
+{% load static %}
+{% block content %}
+<div class="table-wrapper">
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>¿Cómo funciona?</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Create</td>
+                <td><p><u>Requiere login y poderes</u><br>Debe ingresar un título, contenido e imagen.</p></td>
+                <td><a href="{% url 'newsapicreate' %}">API Create</a></td>
+            </tr>
+            <tr>
+                <td>View</td>
+                <td><p><u>No requiere login o poderes</u><br>Recibirá todas las noticias ingresadas hasta el momento.</p></td>
+                <td><a href="{% url 'newsapiview' %}">API View</a></td>
+            </tr>
+            <tr>
+                <td>Update</td>
+                <td><p><u>Requiere login y poderes</u><br>Debe añadir al final de la url el ID de la noticia a editar.</p></td>
+                <td><a href="{% url 'newsapiupdate' 0 %}">API Update</a></td>
+            </tr>
+            <tr>
+                <td>Delete</td>
+                <td><p><u>Requiere login y poderes</u><br>Debe añadir al final de la url el ID de la noticia a eliminar.</p></td>
+                <td><a href="{% url 'newsapidelete' 0 %}">API Delete</a></td>
+            </tr>
+    </table>
+</div>
+{% endblock %}

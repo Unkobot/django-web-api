@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+{% block title %}Registro{% endblock %}
+{% block content %}
+{% if request.user.is_authenticated %}
+    <script>window.location.href = '{% url "profile" %}';</script>
+{% endif %}
+<style>.errorlist{color:red;}label{display:none;}</style>
+<form action="" method="post">{% csrf_token %}
+    <h3 class="mb-4">Registro</h3>
+    {% if form.non_field_errors %}
+    <p style="color:red">Usuario o contraseña no validos.</p>
+    {% endif %}
+    {{form.as_p}}
+    <input type="submit" value="Confirmar">
+</form>
+{% endblock %}

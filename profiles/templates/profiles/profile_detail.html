@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+{% block title %}Detalles{% endblock %}
+{% load static %}
+{% block content %}
+<div id="main">
+	<div class="inner">
+<h1>{{profile.user}}{% if profile.user.is_staff %}(<strong style="color:#F08080;"><u>Administrador</u></strong>){% endif %}</h1>
+<h3>Biografía</h3>
+<p><span class="image left">
+{% if profile.avatar %}
+    <img src="{{profile.avatar.url}}"  alt=""/></span></p>
+    {% else %}
+    <img src="{% static 'registration/img/no-avatar.jpg' %}" alt="" /></span></p>
+    {% endif %}
+{% if profile.bio %}
+<blockquote>{{profile.bio}}</blockquote>
+{% else %}
+</p>
+{% endif %}
+    {% if profile.link %}
+<p><strong>Mi página:</strong>
+    <a href="{{profile.link}}" target="_blank">
+        {{profile.link}}</a>
+</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

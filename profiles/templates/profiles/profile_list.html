@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+{% block title %}Listado perfiles{% endblock %}
+{% load static %}
+{% block content %}
+<h1>Usuarios</h1>
+<section class="tiles">
+{% for profile in profile_list %}
+<article class="style">
+	<span class="image">
+        {% if profile.avatar %}
+		<img src="{{profile.avatar.url}}" alt="" width="200" height="300"/>
+        {% else %}
+        <img src="{% static 'registration/img/no-avatar.jpg' %}" alt="" width="200" height="300" />
+        {% endif %}
+    </span>
+	<a href="{% url 'detail' profile.user %}">
+		<div class="content">
+			<p>{{profile.user}}</p>
+		</div>
+	</a>
+</article>
+{% endfor %}
+</section>
+{% endblock %}

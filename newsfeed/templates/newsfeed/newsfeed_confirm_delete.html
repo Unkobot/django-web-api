@@ -1,0 +1,9 @@
+{% extends 'core/base.html' %}
+{% block title %}Confirmación{% endblock %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <p>¿Estás seguro que quieres borrar "{{object}}"?</p>
+    <input type="submit" value="Sí, estoy seguro" />
+</form>
+{% endblock %}

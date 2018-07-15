@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Mi Perfil{% endblock %}
+{% block content %}
+<style>.errorlist{color:red;}</style>
+<h3>Mi Perfil</h3>
+<form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+  <p>Actual :</p>
+  <p>{% if request.user.profile.avatar %}
+  <img src="{{request.user.profile.avatar.url}}" class="img-fluid" width="125" height="125" />
+  {% else %}
+    <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-fluid" width="125" height="125" />
+  {% endif %}</p>
+  <div>
+      <!-- Formulario -->
+      <div>
+        <p>Cambiar imagen: <input type="file" name="avatar" id="id_avatar"></p>
+        {{ form.bio }}
+        {{ form.link }}
+        <input type="email" value="{{request.user.email}}" readonly/>
+        <p>Si deseas editar tu email haz click <a href="#">aquí</a>
+        y si deseas cambiar tu clave haz click <a href="#">aquí</a></p>
+        <input type="submit" value="Actualizar">
+      </div>
+    </div>
+  </form>
+{% endblock %}

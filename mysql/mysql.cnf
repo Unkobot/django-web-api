@@ -1,0 +1,6 @@
+[client]
+bind-address = pmunoz.mysql.pythonanywhere-services.com
+database = pmunoz$djangoapp
+user = pmunoz
+password = testdjango2k18
+default-character-set = utf8

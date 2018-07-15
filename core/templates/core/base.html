@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" /> {% load static %}
+	<link rel="stylesheet" href="{% static 'core/assets/css/main.css' %}" />
+	<noscript>
+		<link rel="stylesheet" href="{% static 'core/assets/css/noscript.css' %}" />
+	</noscript>
+</head>
+
+<body class="is-preload">
+	<!-- Wrapper -->
+	<div id="wrapper">
+		<!-- Header -->
+		<header id="header">
+			<div class="inner">
+				<!-- Logo -->
+				<a href="{% url 'home' %}" class="logo">
+					<span class="symbol">
+						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Aiga_bus_on_red_circle.svg/600px-Aiga_bus_on_red_circle.svg.png" alt="" />
+					</span>
+					<span class="title">RateMyTravel</span>
+				</a>
+				<!-- Nav -->
+				<nav>
+					<ul>
+						<li>
+							<a href="#menu">Menu</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<!-- Menu -->
+		<nav id="menu">
+			{% if request.user.is_authenticated %}
+			<h2>Bienvenido: <p>{{user.username|upper}}
+			{% if user.profile.avatar %}
+			<img src="{{user.profile.avatar.url}}" width="250" height="250" /></p></h2>
+			{% endif %}
+			{% endif %}
+			<h2>Menú</h2>
+			<ul>
+				<li>
+					<a href="{% url 'home' %}">Inicio</a>
+				</li>
+				<!--Añadir al menú desplegable-->
+				{% if not request.user.is_authenticated %}
+				<li>
+					<a href="{% url 'login' %}">Ingresar</a>
+				</li>
+				<li>
+					<a href="{% url 'signup' %}">Registrarse</a>
+				</li>
+				{% endif %}
+				{% if request.user.is_authenticated %}
+				<li>
+					<a href="{% url 'list' %}">Listado de usuarios</a>
+				</li>
+				<li>
+					<a href="{% url 'profile' %}">Mi perfil</a>
+				</li>
+				<li>
+					<a href="{% url 'logout' %}">Salir</a>
+				</li>
+				{% endif %}
+				<li>
+					<a href="{% url 'about' %}">Acerca de nosotros</a>
+				</li>
+				<li>
+					<a href="{% url 'api' %}">Acerca de nuestra API</a>
+				</li>
+			</ul>
+		</nav>
+		<!-- Main -->
+		<div id="main">
+			<div class="inner">
+				{% if request.path == "/" %}
+				{% block header %}
+				{% endblock %}
+				{% endif %}
+				<!--Inicio articulo-->
+				{% block content %}
+				{% endblock %}
+				<!--Fin articulo-->
+			</div>
+		</div>
+		<!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+				<section>
+					<h2>Get in touch</h2>
+					<form method="post" action="#">
+						<div class="fields">
+							<div class="field half">
+								<input type="text" name="name" id="name" placeholder="Name" />
+							</div>
+							<div class="field half">
+								<input type="email" name="email" id="email" placeholder="Email" />
+							</div>
+							<div class="field">
+								<textarea name="message" id="message" placeholder="Message"></textarea>
+							</div>
+						</div>
+						<ul class="actions">
+							<li>
+								<input type="submit" value="Send" class="primary" />
+							</li>
+						</ul>
+					</form>
+				</section>
+				<section>
+					<h2>Follow</h2>
+					<ul class="icons">
+						<li>
+							<a href="#" class="icon style2 fa-twitter">
+								<span class="label">Twitter</span>
+							</a>
+						</li>
+						<li>
+							<a href="#" class="icon style2 fa-facebook">
+								<span class="label">Facebook</span>
+							</a>
+						</li>
+						<li>
+							<a href="#" class="icon style2 fa-instagram">
+								<span class="label">Instagram</span>
+							</a>
+						</li>
+						<li>
+							<a href="#" class="icon style2 fa-dribbble">
+								<span class="label">Dribbble</span>
+							</a>
+						</li>
+						<li>
+							<a href="#" class="icon style2 fa-github">
+								<span class="label">GitHub</span>
+							</a>
+						</li>
+						<li>
+							<a href="#" class="icon style2 fa-500px">
+								<span class="label">500px</span>
+							</a>
+						</li>
+						<li>
+							<a href="#" class="icon style2 fa-phone">
+								<span class="label">Phone</span>
+							</a>
+						</li>
+						<li>
+							<a href="#" class="icon style2 fa-envelope-o">
+								<span class="label">Email</span>
+							</a>
+						</li>
+					</ul>
+				</section>
+				<ul class="copyright">
+					<li>&copy; Untitled. All rights reserved</li>
+					<li>Design:
+						<a href="http://html5up.net">HTML5 UP</a>
+					</li>
+				</ul>
+			</div>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="{% static 'core/assets/js/jquery.min.js' %}"></script>
+	<script src="{% static 'core/assets/js/browser.min.js' %}"></script>
+	<script src="{% static 'core/assets/js/breakpoints.min.js' %}"></script>
+	<script src="{% static 'core/assets/js/util.js' %}"></script>
+	<script src="{% static 'core/assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

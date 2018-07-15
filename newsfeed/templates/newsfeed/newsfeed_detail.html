@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% block title %}Titulo{% endblock %}
+{% load static %}
+{% block content %}
+<p>
+{% if can_create %}
+	<a class="button primary" href="{% url 'create' %}">Crear nueva publicación</a>
+{% endif %}
+{% if can_delete %}
+	<a class="button primary" href="{% url 'delete' newsfeed.id %}">Borrar</a>
+{% endif %}
+{% if can_edit %}
+	<a class="button primary" href="{% url 'update' newsfeed.id %}">Editar</a>
+{% endif %}
+</p>
+<div id="main">
+		<div class="inner">
+			<h1>{{newsfeed.title}}</h1>
+			<span class="image main"><img src="{{newsfeed.image.url}}" alt="" width="400" height="400"/></span>
+			<p>{{newsfeed.content}}</p>
+		</div>
+	<p>Publicado por <a href="{% url 'detail' newsfeed.author|slugify %}">{{newsfeed.author}}</a><br>
+	Última actualización {{newsfeed.updated}}</p>
+	</div>
+{% endblock %}

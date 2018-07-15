@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+{% block title %}Index{% endblock %}
+{% load static %}
+{% block header %}
+	<header>
+		<h1>Sistema de control del transporte público</h1>
+		<p>Aquí encontrarás las últimas noticias publicadas por nuestros clientes.</p>
+	</header>
+		{% if can_create %}
+		<p><a class="button primary" href="{% url 'create' %}">Crear nueva publicación</a></p>
+		{% endif %}
+{% endblock %}
+{% block content %}
+<section class="tiles">
+{% for new in news %}
+<article class="style">
+	<span class="image">
+		<img src="{{new.image.url}}" alt="" width="200" height="300"/>
+	</span>
+	<a href="{% url 'newsfeed' new.id new.title|slugify %}">
+		<h2>{{new.title|truncatechars:15}}</h2>
+		<div class="content">
+			<p>{{new.content|truncatewords:10}}</p>
+		</div>
+	</a>
+</article>
+{% empty %}
+</section>
+<h1>No hay nuevas noticias.</h1>
+{% endfor %}
+</section>
+{% endblock %}
