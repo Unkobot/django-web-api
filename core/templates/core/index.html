@@ -15,7 +15,11 @@
 {% for new in news %}
 <article class="style">
 	<span class="image">
+		{% if new.image %}
 		<img src="{{new.image.url}}" alt="" width="200" height="300"/>
+		{% else %}
+		<img src="{% static 'registration/img/no-img.jpg' %}" alt="" width="200" height="300"/>
+		{% endif %}
 	</span>
 	<a href="{% url 'newsfeed' new.id new.title|slugify %}">
 		<h2>{{new.title|truncatechars:15}}</h2>

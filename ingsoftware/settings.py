@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'easy_pdf',
     'core',
     'rest_framework',
     'profiles',
@@ -80,10 +81,8 @@ WSGI_APPLICATION = 'ingsoftware.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': os.path.join(BASE_DIR, 'mysql/mysql.cnf'),
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'database.sqlite'),
     }
 }
 
@@ -107,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
-    'PAGE_SIZE':10
+    'PAGE_SIZE': 10
 }
 
 

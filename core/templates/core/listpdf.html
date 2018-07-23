@@ -1,0 +1,75 @@
+{% extends 'easy_pdf/base.html' %} {% block title %}PDF{% endblock title %}
+{% block layout_style %}
+<style>
+    @page {
+    size: letter landscape;
+    margin: 1cm;
+    }
+    table, th, td {
+        border: 0.1px solid,black;
+        text-align: left;
+        font-size: 12pt;
+    }
+    td {
+        padding: 1px;
+        padding-top: 2px;
+    }
+    table{
+        overflow: hidden;
+    }
+
+</style>
+{% endblock %}
+{% block content %}
+<div id="main_content" class="main">
+<table>
+    <tr>
+        <td>
+            Titulo
+        </td>
+        <td>
+            Contenido
+        </td>
+        <td>
+            URL imagen
+        </td>
+        <td>
+            Fecha creacion
+        </td>
+        <td>
+            Fecha actualizacion
+        </td>
+        <td>
+            Autor
+        </td>
+    </tr>
+{% for new in object_list %}
+    <tr>
+        <td>
+            {{new.title}}
+        </td>
+        <td>
+            {{new.content|truncatewords:5}}
+        </td>
+        <td>
+            {% if new.image %}
+            {{new.image.url|truncatechars:10}}
+            {% else %}
+            NO PRESENTA IMAGEN
+            {% endif %}
+            
+        </td>
+        <td>
+            {{new.created}}
+        </td>
+        <td>
+            {{new.updated}}
+        </td>
+        <td>
+            {{new.author}}
+        </td>
+    </tr>
+{% endfor %}
+</table>
+</div>
+{% endblock content %}

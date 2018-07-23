@@ -16,7 +16,11 @@
 <div id="main">
 		<div class="inner">
 			<h1>{{newsfeed.title}}</h1>
+			{% if newsfeed.image %}
 			<span class="image main"><img src="{{newsfeed.image.url}}" alt="" width="400" height="400"/></span>
+			{% else %}
+			<span class="image main"><img src="{% static 'registration/img/no-img.jpg' %}" alt="" width="400" height="400"/></span>
+			{% endif %}
 			<p>{{newsfeed.content}}</p>
 		</div>
 	<p>Publicado por <a href="{% url 'detail' newsfeed.author|slugify %}">{{newsfeed.author}}</a><br>
